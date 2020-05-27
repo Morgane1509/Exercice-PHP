@@ -13,13 +13,9 @@ class Validator {
 
  // Longueur et Largueur doivent etre numeric(entier,reel)
  public function is_number($nombre,$key,$errorMessage="Veuiller saisir un nombre"){
-    $this->is_empty($nombre,$key);
-    if($this->is_valid()){
-        if(is_numeric($nombre)!==true){
-            $this->errors[$key]= $errorMessage;
-        }
+    if(!is_numeric($nombre)){
+        $this->errors[$key]= $errorMessage;
     }
-    
 }
 
 /*
@@ -28,10 +24,10 @@ class Validator {
 */
 public function is_positif($nombre,$key,$errorMessage="Veuiller saisir un nombre positif"){
                    $this->is_number($nombre,$key);
-                    if($this->is_valid()){
-                        if($nombre<=0){
-                            $this->errors[$key]= $errorMessage;
-                        }
+                   if($this->is_valid()){
+                      if($nombre<=0){
+                        $this->errors[$key]= $errorMessage;
+                      }
                     }
                    
 }
@@ -46,9 +42,9 @@ public function compare($nbre1,$nbre2,$key1,$key2,$errorMessage="Longueur doit s
     $this->is_positif($nbre1,$key1);
     $this->is_positif($nbre2,$key2);
    if($this->is_valid()){
-        if($nbre1<=$nbre2){
-            $this->errors['all']=$errorMessage;
-        }
+           if($nbre1<=$nbre2){
+              $this->errors['all']=$errorMessage;
+           }
    }
 
 }
@@ -57,39 +53,35 @@ public function  is_empty($nbre,$key,$sms=null){
     if(empty($nbre)){
         if($sms==null){
             $sms="Le Nombre  est Obligatoire";
-            $this->errors[$key]= $sms;
         }
         $this->errors[$key]= $sms;
 
         }
     }
 //Expressions Régulières
-    public function  is_email($valeur,$key,$sms=null){
-        $regex = "#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#";
-        if(preg_match($regex, $valeur)!==true){
-
-            $sms = "L'email est invalide";
-            $this->errors[$key] = $sms;
-        }else{
-            $sms = "L'email est valide"
-        }
-    
+public function  is_email($valeur,$key,$sms=null){
+    $regex = "#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#";
+    if(!preg_match($regex, $valeur)){
+        $sms = "L'email est invalide";
+        $this->errors[$key] = $sms;
     }
+}
 
-    //9chiffres , commence par 77,78,75,76,70
-    public function  is_telephone($valeur,$key,$sms=null){
-        $regex = "#^7[05-8][-. ]?[0-9]{3}([-. ]?[0-9]{2}){2}$#";
-        if(preg_match($regex, $valeur)!==true){
-
-            $sms = "Le numéro est invalide";
-            $this->errors[$key] = $sms;
-        }else{
-            $sms = "Le numéro est valide";
-        }
+//9chiffres , commence par 77,78,75,76,70
+public function  is_telephone($valeur,$key,$sms=null){
+    $regex = "#^7[05-8][-. ]?[0-9]{3}([-. ]?[0-9]{2}){2}$#";
+    if(!preg_match($regex, $valeur)){
+        $sms = "Le numéro est invalide";
+        $this->errors[$key] = $sms;
     }
+}
 
 
 
 
 
 }
+
+
+
+?>

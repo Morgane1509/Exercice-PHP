@@ -11,17 +11,20 @@
           //Attributs classe ou Attributs static
 
             //Constructeur => methode instance concrete
-              public  function __construct($longueur=null,$largeur=null){
-                        if($longueur!=null){
-                          $this->longueur=$longueur;
-                        }
+              public  function __construct($largeur=null, $row=null){
                         if($largeur!=null){
                           $this->largeur=$largeur;
                         }
+                        //Hydratation d'un objet Carre
+                      if($row!=null){
+                        $this->hydrate($row);
+                  }
               }
               public function hydrate($row){
-                
-              }
+                $this->longueur=$row['longueur'];
+                $this->largeur=$row['largeur'];
+                $this->id=$row['id'];
+       }
               //Getters  methodes instances concretes
            
               public function getLargeur(){
@@ -53,7 +56,6 @@
   //Access Classe  ::
   //Objet          ->
 Rectangle::setUnite("m");
-
   //Objets
   $rect1=new Rectangle();
   //$rect1.longueur => erreur encapsulation
@@ -63,8 +65,6 @@ Rectangle::setUnite("m");
   //Getters
  echo "Longueur ".  $rect1->getLongueur()."" .$rect1->getUnite()."  <br>";
  echo "Largeur ". $rect1->getLargeur()."" .$rect1->getUnite()."<br>";
-
-
   $rect2=new Rectangle();
  //Setters
  $rect2->setLongueur(1200002);
@@ -73,5 +73,3 @@ Rectangle::setUnite("m");
 echo "Longueur".  $rect2->getLongueur()."" .$rect2->getUnite(). "<br>";
 echo "Largeur". $rect2->getLargeur()."" .$rect2->getUnite()."<br>";
 */
-
-?>

@@ -39,7 +39,6 @@
   //Access Classe  ::
   //Objet          ->
 Rectangle::setUnite("m");
-
   //Objets
   $rect1=new Rectangle();
   //$rect1.longueur => erreur encapsulation
@@ -49,8 +48,6 @@ Rectangle::setUnite("m");
   //Getters
  echo "Longueur ".  $rect1->getLongueur()."" .$rect1->getUnite()."  <br>";
  echo "Largeur ". $rect1->getLargeur()."" .$rect1->getUnite()."<br>";
-
-
   $rect2=new Rectangle();
  //Setters
  $rect2->setLongueur(1200002);
